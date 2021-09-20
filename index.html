@@ -109,8 +109,6 @@ const keyDown = e => {
         // 正しい入力の時だけスコアを加算する
         score++;
 
-        //  最後まで入力したら新しいテキストを用意する
-        if(!checkText.length) createText();
     
         //  Shiftキーを押した時は色が変わらない
     } else if(e.key === 'shift') {
@@ -141,7 +139,7 @@ const rankCheck = score => {
     return `${score}文字打てました！\n${text}\n【OK】リトライ／【キャンセル】終了`;
 }; // ランク判定とメッセージ生成処理
 
-const gameover  = id =>{
+const gameOver  = id =>{
 
     // タイマーをストップする
     clearInterval(id);
@@ -164,7 +162,7 @@ const timer = () => {
     const id = setInterval(() => {
 
         // カウントが0になったらタイマーのIDをgameover()に渡す
-        if(time <= 0) gameover(id);
+        if(time <= 0) gameOver(id);
 
         // タイマーの表示を1ずつ減らしていく
         count.textContent = time--;
